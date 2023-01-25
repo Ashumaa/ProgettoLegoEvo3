@@ -12,3 +12,13 @@ La macchina telecomandata LEGO è stata costruita utilizzando i kit di costruzio
 Il nostro programma rappresenta una soluzione semplice ed economica per il controllo remoto di macchine e robot, ed è stato progettato per essere utilizzato sia da studenti che da appassionati di robotica.
 Siamo orgogliosi di condividere questo progetto con la comunità e siamo ansiosi di vedere come verrà utilizzato in futuro.
 
+Interfaccia utente da riga di comando 
+
+Comandi da tastiera:
+
+W = Accelerare
+A = Girare a sinistra
+S = Retromarcia
+D = Girare a destra
+SHIFT = Rallentare
+Space bar = Action 1 (ruspa)
