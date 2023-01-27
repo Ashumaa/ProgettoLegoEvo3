@@ -17,8 +17,13 @@ Interfaccia utente da riga di comando
 Comandi da tastiera:
 
 W = Accelerare
+
 A = Girare a sinistra
+
 S = Retromarcia
+
 D = Girare a destra
+
 SHIFT = Rallentare
+
 Space bar = Action 1 (ruspa)
