@@ -24,6 +24,6 @@ S = Retromarcia
 
 D = Girare a destra
 
-SHIFT = Rallentare
+SHIFT = Rallentare // forse
 
 Space bar = Action 1 (ruspa)
