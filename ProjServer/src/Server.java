@@ -1,41 +1,33 @@
-	
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import lejos.hardware.Sound;
-
 public class Server {
     
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private PrintWriter output;
     private BufferedReader input;
-    Comandi Movimento;
+    Comandi Movement;
     
    
 
     public void startServer(int port) throws IOException {
     	
-        //creo un socket "serverSocket" in ascolto nella porta 30015
         serverSocket = new ServerSocket(port);
 
         System.out.println("Il server e' partito!");
         System.out.println("IP: 10.0.1.1");
         System.out.println("Porta: 9876");
         
-
-        //accetto la comunicazione del client creando un altro oggetto socket
         clientSocket = serverSocket.accept();
 
         System.out.println("Client connesso correttamente!");
     }
-    	
 
     public void riceviComandi() throws IOException {
 
-    	Movimento = new Comandi();
+    	Movement = new Comandi();
     	
         output = new PrintWriter(clientSocket.getOutputStream(), true);
         input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -50,39 +42,39 @@ public class Server {
             case '0':
             	
             	//System.out.println("rallenta");	
-            	//Movimento.rallenta();
+            	//Movement.rallenta();
             	break;
             	
                
             	
             case 'w':
             	System.out.println("avanti");
-            	Movimento.vaiAvanti();
+            	Movement.goForward();
             	break;
             	
             case 's':
             	System.out.println("indietro");
-            	Movimento.vaiIndietro();
+            	Movement.goBackward();
             	break;
             	
             case 'a':
             	System.out.println("sinistra");
-            	Movimento.curvaSx();
+            	Movement.rotateLeft();
             	break;
             	
             case 'd':
             	System.out.println("destra");
-            	Movimento.curvaDx();
+            	Movement.rotateRight();
             	break;
             	
             case 'q':
             	System.out.println("accelera");
-            	Movimento.setMaxVel();
+            	Movement.setMaxSpeed();
             	break;
             	
             case 27:
             	System.out.println("Spegnimento server!");
-            	Movimento.shutDown();
+            	Movement.shutDown();
             	stopServer();
             	break;
            }
@@ -93,11 +85,8 @@ public class Server {
     
     public void getMidVel() {
     	
-    	//invio velocità al client
-        output.println(Movimento.getMidVel());
-    	
-    	//int veloc = (int) Math.floor(Math.random()*(740-100+1)+100);
-        //output.println(veloc);
+        output.println(Movement.getMidSpeed());
+  
         
     }
     
@@ -108,21 +97,13 @@ public class Server {
     	output.close();
     	input.close();
     }
-   
 
- 
-    
-    
-    
-    
-    
 
         public static void main(String[] args) throws IOException {
 
             Server server = new Server();
 
             server.startServer(9876);
-            //while(true)
             server.riceviComandi();
             
             server.getMidVel();
