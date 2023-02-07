@@ -1,121 +1,140 @@
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
-
 public class Comandi {
 	
-	RegulatedMotor motorC = new EV3LargeRegulatedMotor(MotorPort.C);
-	RegulatedMotor motorB = new EV3LargeRegulatedMotor(MotorPort.B);
+	RegulatedMotor EngineC = new EV3LargeRegulatedMotor(MotorPort.C);
+	RegulatedMotor EngineB = new EV3LargeRegulatedMotor(MotorPort.B);
 	
-	private int maxVel = 900;
-	private int baseVel = 400;
-	private int vel;
+	private int maxSpeed = 900;
+	private int baseSpeed = 400;
+	private int Speed;
 	private int i = 0;
-	private int midVel;
+	private int midSpeed;
 	private boolean axl = false;
+    private int tempC;
+    private int tempB;
 
-	public void vaiAvanti() 
+	public void goForward() 
 	{
 		if(!axl)
-			setVel();
-	motorC.forward();
-	motorB.forward();
+			setSpeed();
+	EngineC.forward();
+	EngineB.forward();
 	
-	if (getMidVel() < maxVel) {
+	if (getMidSpeed() < maxSpeed) {
 	i = i+1;
-	aumVel(i);
+	IncreaseSpeed(i);
 	}
-	vel = motorC.getSpeed();
+	Speed = EngineC.getSpeed();
 	
 	}
 	
 	public void stop()
 	{
-	motorC.stop(true);
-	motorB.stop(true);
-	vel = 0;
+	EngineC.stop(true);
+	EngineB.stop(true);
+	Speed = 0;
 	
 	}
 	
-	public void vaiIndietro() 
+	public void goBackward() 
 	{
-	setVel();	
-	motorC.backward();
-	motorB.backward();
-	if (getMidVel() < maxVel) {
+	setSpeed();	
+	EngineC.backward();
+	EngineB.backward();
+	if (getMidSpeed() < maxSpeed) {
 	i = i+1;
-	aumVel(i);
+	IncreaseSpeed(i);
 	}
-	vel = motorC.getSpeed();
+	Speed = EngineC.getSpeed();
 	}
 	
-	public void aumVel(int aum)
+	public void IncreaseSpeed(int aum)
 	{
-	motorC.setSpeed(motorC.getSpeed()+aum);
-	motorB.setSpeed(motorB.getSpeed()+aum);
-	vel = getMidVel();
+	EngineC.setSpeed(EngineC.getSpeed()+aum);
+	EngineB.setSpeed(EngineB.getSpeed()+aum);
+	Speed = getMidSpeed();
 	}
 	
-	public void impVel(int vel)
+	public void changeSpeed(int Speed)
 	{
-	motorC.setSpeed(vel);
-	motorB.setSpeed(vel);
+	EngineC.setSpeed(Speed);
+	EngineB.setSpeed(Speed);
 	}
 	
-	public void curvaSx() 
+	public void rotateLeft() 
 	{
-	//motorB.setSpeed(motorB.getSpeed()/2);
-	//motorB.forward();
-	//motorC.forward();
-	motorB.rotate(5);
+	//EngineB.setSpeed(EngineB.getSpeed()/2);
+	//EngineB.forward();
+	//EngineC.forward();
+	tempC= EngineC.getSpeed();
+    tempB= EngineB.getSpeed();
+    if(EngineB.getSpeed == maxSpeed && EngineC.getSpeed()==maxSpeed)
+    {
+        EngineB.setSpeed(EngineC.getSpeed()/2);
+        EngineC.setSpeed(EngineC.getSpeed()/2);
+    }
+    EngineB.rotate(5);
+    EngineB.setSpeed(tempB);
+    EngineC.setSpeed(tempC);
 	}
 	
-	public void curvaDx() {
+	public void rotateRight() {
 	
 	
-	//motorC.setSpeed(motorC.getSpeed()/2);
-	//motorB.forward();
-	//motorC.forward();
-	motorC.rotate(5);
+	//EngineC.setSpeed(EngineC.getSpeed()/2);
+	//EngineB.forward();
+	//EngineC.forward();
+    tempC= EngineC.getSpeed();
+    tempB= EngineB.getSpeed();
+    if(EngineB.getSpeed == maxSpeed && EngineC.getSpeed()==maxSpeed)
+    {
+        EngineB.setSpeed(EngineC.getSpeed()/2);
+        EngineC.setSpeed(EngineC.getSpeed()/2);
+    }
+	EngineC.rotate(5);
+    EngineB.setSpeed(tempB);
+    EngineC.setSpeed(tempC);
 	}
 	
 	public void reset() {
 	
-	motorC.setSpeed(baseVel);
-	motorB.setSpeed(vel);
+	EngineC.setSpeed(baseSpeed);
+	EngineB.setSpeed(Speed);
 	i = 0;
 	}
 	
-	public void setVel() {
+	public void setSpeed() {
 	
-	motorC.setSpeed(baseVel);
-	motorB.setSpeed(baseVel);
+	EngineC.setSpeed(baseSpeed);
+	EngineB.setSpeed(baseSpeed);
 	}
 	
-	public void rallenta() {
+	public void slow() {
 	
-	//if (motorC.getSpeed() > 0 && motorB.getSpeed() > 0) {
+	//if (EngineC.getSpeed() > 0 && EngineB.getSpeed() > 0) {
 	
-	motorC.setSpeed(motorC.getSpeed() - 50);
-	motorB.setSpeed(motorB.getSpeed() - 50);
+	EngineC.setSpeed(EngineC.getSpeed() - 50);
+	EngineB.setSpeed(EngineB.getSpeed() - 50);
 	//}
 	
-	//vel = getMidVel();
+	//Speed = getMidSpeed();
 	}
 	
 	public void shutDown() {
 	
-	motorC.stop(true);
-	motorB.stop(true);
+	EngineC.stop(true);
+	EngineB.stop(true);
 	
-	motorC.close();
-	motorB.close();
+	EngineC.close();
+	EngineB.close();
 	}
 	
-	public void setMaxVel()
+	public void setMaxSpeed()
 	{
-		motorC.setSpeed(maxVel);
-		motorB.setSpeed(maxVel);
+		EngineC.setSpeed(maxSpeed);
+		EngineB.setSpeed(maxSpeed);
 		if(axl)
 			axl = false;
 		else
@@ -123,11 +142,11 @@ public class Comandi {
 		
 	}
 	
-	public int getMidVel() {
+	public int getMidSpeed() {
 	
-	midVel = (motorC.getSpeed() + motorB.getSpeed())/2;
+	midSpeed = (EngineC.getSpeed() + EngineB.getSpeed())/2;
 	
-	return midVel;
+	return midSpeed;
 	}
 	
 }
