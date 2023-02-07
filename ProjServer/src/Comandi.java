@@ -67,7 +67,7 @@ public class Comandi {
 	//motorB.setSpeed(motorB.getSpeed()/2);
 	//motorB.forward();
 	//motorC.forward();
-	motorB.rotate(10);
+	motorB.rotate(5);
 	}
 	
 	public void curvaDx() {
@@ -76,7 +76,7 @@ public class Comandi {
 	//motorC.setSpeed(motorC.getSpeed()/2);
 	//motorB.forward();
 	//motorC.forward();
-	motorC.rotate(10);
+	motorC.rotate(5);
 	}
 	
 	public void reset() {
