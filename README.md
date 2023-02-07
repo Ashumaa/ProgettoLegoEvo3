@@ -24,4 +24,8 @@ S = Retromarcia
 
 D = Girare a destra
 
+Q = Accelerare
+
+Esc = Chiusura Server
+
 
