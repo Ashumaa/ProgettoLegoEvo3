@@ -24,8 +24,8 @@ S = Retromarcia
 
 D = Girare a destra
 
-Q = Accelerare
+Q =  Toggle/Speed   450/900
 
-Esc = Chiusura Server
+Esc = Chiusura Server 
 
 
