@@ -79,8 +79,9 @@ public class Client {
             }
             client.ricezioneDati();
             
-            telecomando.setspeedoc(client.getspeed());
+            telecomando.setSpeed(client.getspeed());
 
-        }
+
+            }
     }
 }
