@@ -41,8 +41,8 @@ public class Server {
             
             case '0':
             	
-            	//System.out.println("rallenta");	
-            	//Movement.rallenta();
+            	System.out.println("rallenta");	
+            	Movement.slow();;
             	break;
             	
                
@@ -109,4 +109,4 @@ public class Server {
             server.getMidVel();
             
         }
-    }
+}
