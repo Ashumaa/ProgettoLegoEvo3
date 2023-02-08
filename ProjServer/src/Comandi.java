@@ -17,9 +17,22 @@ public class Comandi {
 
 	public void goForward() 
 	{
-		if(!axl)
-			setSpeed();
-	EngineC.forward();
+		if(EngineC.getSpeed()>EngineB.getSpeed())
+		{
+			EngineB.setSpeed(EngineC.getSpeed());
+		}
+		else
+			if(EngineC.getSpeed()<EngineB.getSpeed())
+			{
+				EngineC.setSpeed(EngineB.getSpeed());
+			}
+			else
+				
+		if(!axl) {
+			EngineC.setSpeed(maxSpeed);
+			EngineB.setSpeed(maxSpeed);
+		}
+		EngineC.forward();
 	EngineB.forward();
 	
 	if (getMidSpeed() < maxSpeed) {
@@ -68,34 +81,42 @@ public class Comandi {
 	//EngineB.setSpeed(EngineB.getSpeed()/2);
 	//EngineB.forward();
 	//EngineC.forward();
-	tempC= EngineC.getSpeed();
+	EngineC.setSpeed(900);
+	EngineB.setSpeed(450);
+	
+	/*tempC= EngineC.getSpeed();
     tempB= EngineB.getSpeed();
-    if(EngineB.getSpeed == maxSpeed && EngineC.getSpeed()==maxSpeed)
+    if(EngineB.getSpeed() == maxSpeed && EngineC.getSpeed()==maxSpeed)
     {
         EngineB.setSpeed(EngineC.getSpeed()/2);
         EngineC.setSpeed(EngineC.getSpeed()/2);
     }
-    EngineB.rotate(5);
+    EngineB.rotate(1);
     EngineB.setSpeed(tempB);
     EngineC.setSpeed(tempC);
+	*/
 	}
 	
 	public void rotateRight() {
 	
-	
+		EngineB.setSpeed(900);
+		EngineC.setSpeed(450);
 	//EngineC.setSpeed(EngineC.getSpeed()/2);
 	//EngineB.forward();
 	//EngineC.forward();
+	
+		/*
     tempC= EngineC.getSpeed();
     tempB= EngineB.getSpeed();
-    if(EngineB.getSpeed == maxSpeed && EngineC.getSpeed()==maxSpeed)
+    if(EngineB.getSpeed() == maxSpeed && EngineC.getSpeed()==maxSpeed)
     {
         EngineB.setSpeed(EngineC.getSpeed()/2);
         EngineC.setSpeed(EngineC.getSpeed()/2);
     }
-	EngineC.rotate(5);
+	EngineC.rotate(1);
     EngineB.setSpeed(tempB);
     EngineC.setSpeed(tempC);
+	*/
 	}
 	
 	public void reset() {
