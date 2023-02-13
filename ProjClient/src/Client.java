@@ -68,20 +68,7 @@ public class Client {
         client.connessione();
 
         while (true) {
-
             client.InvioDati(telecomando.getvalore());
-
-            try {
-                Thread.sleep(180);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                client.chiudiConnessione();
-            }
-            client.ricezioneDati();
-            
-            telecomando.setSpeed(client.getspeed());
-
-
-            }
+        }
     }
 }
